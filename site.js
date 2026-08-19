@@ -14,14 +14,34 @@ import * as fs from "node:fs";
 const hostname = '127.0.0.1';
 const port = 8080;
 
+/* function for reading a file and sending it as a response */
+function respondFile(file, res){
+	try{
+		const data = fs.readFileSync(file, 'utf8');
+		res.write(data);
+
+	} catch(err){
+		res.write("<pre>");
+		res.write(err);
+		res.write("</pre>");
+	}
+}
+
 /* make the server with with a handler function */
 const server = http.createServer((req, res) => {
+
+	res.statusCode = 200;
 
 	/* check the requested page */
 	switch(req.url){
 
 		case "/":
-			res.statusCode = 200;
+			res.setHeader("Content-Type","text/html");
+			respondFile("test.html",res);
+			res.end();
+			break;
+
+		case "test":
 			res.setHeader("Content-Type","text/html");
 			res.write("<h1>mega swagballs</h1>");
 			res.end("<p>yuhuh</p>");
