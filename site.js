@@ -28,6 +28,7 @@ const MIME_TYPES = {
   gif: "image/gif",
   ico: "image/x-icon",
   svg: "image/svg+xml",
+	ttf: "font/ttf",
 };
 
 /* make the server with with a handler function */
@@ -60,7 +61,7 @@ const server = http.createServer((req, res) => {
 				stream.pipe(res);
 			} catch(err){
 				/* there was no file */
-				console.log(err);
+				/* TODO MEGA IMPORTANT:: make this NOT crash!!!!!!!! */
 				res.statusCode = 404;
 				res.setHeader("Content-Type","text/plain");
 				res.end("idk man");

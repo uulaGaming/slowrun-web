@@ -1,0 +1,40 @@
+
+/* colors
+#05556F, #003856, #849E8A, #84869B, #D7CFA1, #96906D
+*/
+
+html, body {
+	margin: 0px;
+}
+
+header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: white;
+	background-color: #05556F;
+}
+
+header h1, header nav {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+nav a {
+	padding: 20px;
+}
+
+nav a:hover {
+	color: #D7CFA1;
+	background-color: #84869B;
+	border-radius: 2px;
+}
+
+.banner{
+	background-image: url("imag.jpg");
+	background-size: cover;
+	background-position: center;
+	height: 500px;
+	width: 100%;
+}
