@@ -16,15 +16,6 @@ const port = 8080;
 
 /* function for reading a file and sending it as a response */
 function respondFile(file, res){
-	try{
-		const data = fs.readFileSync(file, 'utf8');
-		res.write(data);
-
-	} catch(err){
-		res.write("<pre>");
-		res.write(err);
-		res.write("</pre>");
-	}
 }
 
 /* make the server with with a handler function */
@@ -35,23 +26,24 @@ const server = http.createServer((req, res) => {
 	/* check the requested page */
 	switch(req.url){
 
-		case "/":
-			res.setHeader("Content-Type","text/html");
-			respondFile("test.html",res);
-			res.end();
-			break;
-
 		case "test":
 			res.setHeader("Content-Type","text/html");
 			res.write("<h1>mega swagballs</h1>");
 			res.end("<p>yuhuh</p>");
 			break;
 
-		/* only requests from dumbasses will end up here */
+		/* oops */
 		default:
-			res.statusCode = 404;
-			res.setHeader("Content-Type","text/plain");
-			res.end("idk man");
+			try{
+				const data = fs.readFileSync("index.html", 'utf8');
+				res.write(data);
+				res.end();
+			} catch(err){
+				console.log(err);
+				res.statusCode = 404;
+				res.setHeader("Content-Type","text/plain");
+				res.end("idk man");
+			}
 			break;
 	}
 });
