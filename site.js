@@ -30,10 +30,6 @@ const MIME_TYPES = {
   svg: "image/svg+xml",
 };
 
-/* function for reading a file and sending it as a response */
-function respondFile(file, res){
-}
-
 /* make the server with with a handler function */
 const server = http.createServer((req, res) => {
 
@@ -59,9 +55,9 @@ const server = http.createServer((req, res) => {
 				if (url == "/") filepath += "index.html";
 				const ext = path.extname(filepath).substring(1).toLowerCase();
 				const mtype = MIME_TYPES[ext] || MIME_TYPES.default;
-				res.setHeader("Content-Type",mtype);
-				res.write(fs.readFileSync(filepath, 'utf8'));
-				res.end();
+				res.writeHead(200, {"Content-Type": mtype});
+				const stream = fs.createReadStream(filepath);
+				stream.pipe(res);
 			} catch(err){
 				/* there was no file */
 				console.log(err);
