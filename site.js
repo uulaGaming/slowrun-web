@@ -48,18 +48,26 @@ const server = http.createServer((req, res) => {
 			break;
 
 		case "/infosend.html":
+			let data = '';
 			if(req.method === 'POST'){
-				let data = '';
 				req.on('data', chunk => {
 					data += chunk.toString();
 				});
 			}
 			req.on('end', () => {
-      console.log('POST data:', data);
-			});
-			break;	
+				const sdata = data.split('&');
+				let rdata = '';
+				for(const line of sdata){
+					rdata += decodeURIComponent(line.replaceAll('+', ' '));
+					rdata += "\n";
+				}
+				const t = new Date;
 
-		case "/infosend.html":
+				fs.writeFileSync('messages/' + t.toISOString() + '.txt', rdata);
+				res.end('Viestisi on tallennettu');
+			});
+			break;
+
 		/* oops */
 		default:
 			let filepath = STATICPATH;
