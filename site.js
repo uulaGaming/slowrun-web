@@ -36,7 +36,8 @@ const server = http.createServer((req, res) => {
 
 	res.statusCode = 200;
 
-	const url = req.url;
+	const urlparams = req.url.split('?');
+	const url = urlparams[0];
 
 	/* check the requested page */
 	switch(url){
@@ -45,6 +46,29 @@ const server = http.createServer((req, res) => {
 			res.setHeader("Content-Type","text/html");
 			res.write("<h1>mega swagballs</h1>");
 			res.end("<p>yuhuh</p>");
+			break;
+
+		case "/news":
+			res.setHeader("Content-Type","text/html");
+			if(urlparams.length < 2){
+				res.write('<link rel="stylesheet" href="style.css">');
+				res.write('<meta charset="utf-8">');
+				res.write('<header><h1><a href="/">SLOW RUN</a></h1> <nav> <a href="/news">Uutiset</a> <a href="/contact.html">Ota yhteyttä</a></nav></header>');
+				res.write('<main class="newslist">');
+				res.write('<h1>Uutiset</h1>');
+				const articles = fs.readdirSync('news').reverse();
+				for(const article of articles){
+					const content = fs.readFileSync('news/'+article,{encoding: 'utf8'}).split('\n');
+					res.write('<a href="news?'+article+'">');
+					res.write("<article>");
+					res.write("<h1>"+content[0]+"</h1>");
+					res.write("<pre>"+content[1]+"</pre>");
+					res.write("</article>");
+					res.write("</a>");
+				}
+				res.write('</main>');
+			}
+			res.end();
 			break;
 
 		case "/infosend.html":

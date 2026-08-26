@@ -190,3 +190,29 @@ footer a {
 	float: right;
 	margin-right: 5%;
 }
+
+article {
+	text-align: center;
+	background-color: #003856;
+	font-family: "inter";
+	width: fit-content;
+	padding: 8px;
+	margin: 8px;
+	border-radius: 8px;
+}
+
+article h1 {
+	font-family: "inter";
+}
+
+article pre {
+	color: #849E8A;
+}
+
+.newslist{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #05556F;
+}
