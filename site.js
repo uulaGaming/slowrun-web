@@ -50,10 +50,10 @@ const server = http.createServer((req, res) => {
 
 		case "/news":
 			res.setHeader("Content-Type","text/html");
+			res.write('<link rel="stylesheet" href="style.css">');
+			res.write('<meta charset="utf-8">');
+			res.write('<header><h1><a href="/">SLOW RUN</a></h1> <nav> <a href="/news">Uutiset</a> <a href="/contact.html">Ota yhteyttä</a></nav></header>');
 			if(urlparams.length < 2){
-				res.write('<link rel="stylesheet" href="style.css">');
-				res.write('<meta charset="utf-8">');
-				res.write('<header><h1><a href="/">SLOW RUN</a></h1> <nav> <a href="/news">Uutiset</a> <a href="/contact.html">Ota yhteyttä</a></nav></header>');
 				res.write('<main class="newslist">');
 				res.write('<h1>Uutiset</h1>');
 				const articles = fs.readdirSync('news').reverse();
@@ -67,6 +67,17 @@ const server = http.createServer((req, res) => {
 					res.write("</a>");
 				}
 				res.write('</main>');
+			} else {
+				if(fs.existsSync('news/'+urlparams[1])){
+					const content = fs.readFileSync('news/'+urlparams[1],{encoding: 'utf8'}).split('\n');
+					res.write('<main class="newslist">');
+					res.write("<h1>"+content.shift()+"</h1>");
+					res.write("<pre>"+content.shift()+"</pre>");
+					for(const line of content)res.write("<p>"+line+"</p>");
+					res.write("</main>");
+				} else {
+					res.write('<h1>Artikkelia ei löytynyt!</h1>');
+				}
 			}
 			res.end();
 			break;
