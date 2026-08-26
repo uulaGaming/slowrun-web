@@ -16,6 +16,7 @@
 html, body {
 	margin: 0px;
 	font-family: "inter";
+	box-sizing: border-box;
 }
 
 header {
@@ -32,11 +33,7 @@ header h1, header nav {
 	margin-right: 5%;
 }
 
-h1{
-	font-family: "bodoni";
-}
-
-h2{
+h1, h2, h3{
 	font-family: "bodoni";
 }
 
@@ -47,12 +44,7 @@ a{
 
 nav a {
 	padding: 20px;
-}
-
-a:hover {
-	color: #D7CFA1;
-	background-color: #84869B;
-	border-radius: 2px;
+	font-weight: bold;
 }
 
 .banner{
@@ -61,4 +53,140 @@ a:hover {
 	background-position: center;
 	height: 400px;
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 20%;
+	color: white;
+	box-sizing: border-box;
+}
+
+.banner > h2{
+	width: 50%;
+}
+
+.banner > a{
+	display: block;
+	padding: 16px;
+	background-color: #849E8A;
+	font-weight: bold;
+	border-radius: 4px;
+	width: 128px;
+	text-align: center;
+}
+
+a:hover {
+	color: #D7CFA1;
+	background-color: #84869B;
+	border-radius: 4px;
+}
+
+.section1{
+	margin-top: 64px;
+	margin-bottom: 64px;
+	text-align: center;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.boxrow{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: space-around;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 32px;
+}
+
+.vbox{
+	width: 256px;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 32px;
+}
+
+.section1 h1, .section1 h2, .section1 h3 {
+	color: #003856;
+	width: 80%;
+}
+
+.section1 p {
+	color: black;
+}
+
+.section2 {
+	background-color: #849E8A;
+	width: 100%;
+	padding-top: 64px;
+	padding-bottom: 64px;
+}
+
+.section2 h1, .section2 p {
+	font-family: "bodoni";
+	font-weight: bold;
+	color: white;
+	box-sizing: border-box;
+	text-align: left;
+	margin-left: 128px;
+	margin-right: 128px;
+}
+
+.section3 {
+	margin-top: 128px;
+	margin-bottom: 64px;
+	font-family: "bodoni";
+	color: #96906D;
+	text-align: right;
+	box-sizing: border-box;
+	padding-right: 10%;
+}
+
+.arvot{
+	width: min(900px, 100%);
+}
+
+.yhteystiedot{
+	display: flex;
+	justify-content: space-between;
+	height: 600px;
+}
+
+.map {
+	width: 50%;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+form{
+	box-sizing: border-box;
+	width: 50%;
+	padding: 100px;
+	background-color: #96906D;
+	display: flex;
+	flex-direction: column;
+	align-content:center;
+}
+
+form > * {
+	border-radius: 0px;
+	margin: 8px;
+	padding: 4px;
+}
+
+form h2 {
+	color: white;
+}
+
+footer p {
+	margin-left: 5%;
+	color: #05556F;
+	width: fit-content;
+}
+
+footer a {
+	float: right;
+	margin-right: 5%;
 }
