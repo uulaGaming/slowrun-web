@@ -3,8 +3,19 @@
 #05556F, #003856, #849E8A, #84869B, #D7CFA1, #96906D
 */
 
+@font-face{
+	font-family: "bodoni";
+	src: url("LibreBodoni.ttf");
+}
+
+@font-face{
+	font-family: "inter";
+	src: url("Inter.ttf");
+}
+
 html, body {
 	margin: 0px;
+	font-family: "inter";
 }
 
 header {
@@ -21,11 +32,24 @@ header h1, header nav {
 	margin-right: 5%;
 }
 
+h1{
+	font-family: "bodoni";
+}
+
+h2{
+	font-family: "bodoni";
+}
+
+a{
+	text-decoration: none;
+	color: white;
+}
+
 nav a {
 	padding: 20px;
 }
 
-nav a:hover {
+a:hover {
 	color: #D7CFA1;
 	background-color: #84869B;
 	border-radius: 2px;
@@ -35,6 +59,6 @@ nav a:hover {
 	background-image: url("imag.jpg");
 	background-size: cover;
 	background-position: center;
-	height: 500px;
+	height: 400px;
 	width: 100%;
 }
