@@ -47,21 +47,33 @@ const server = http.createServer((req, res) => {
 			res.end("<p>yuhuh</p>");
 			break;
 
+		case "/infosend.html":
+			if(req.method === 'POST'){
+				let data = '';
+				req.on('data', chunk => {
+					data += chunk.toString();
+				});
+			}
+			req.on('end', () => {
+      console.log('POST data:', data);
+			});
+			break;	
+
+		case "/infosend.html":
 		/* oops */
 		default:
-			try{
-				/* look for file */
-				let filepath = STATICPATH;
-				filepath += decodeURI(url);
-				if (url == "/") filepath += "index.html";
-				const ext = path.extname(filepath).substring(1).toLowerCase();
-				const mtype = MIME_TYPES[ext] || MIME_TYPES.default;
+			let filepath = STATICPATH;
+			filepath += decodeURI(url);
+			if (url == "/") filepath += "index.html";
+			const ext = path.extname(filepath).substring(1).toLowerCase();
+			const mtype = MIME_TYPES[ext] || MIME_TYPES.default;
+			if(fs.existsSync(filepath)){
 				res.writeHead(200, {"Content-Type": mtype});
 				const stream = fs.createReadStream(filepath);
 				stream.pipe(res);
-			} catch(err){
+			} else {
 				/* there was no file */
-				/* TODO MEGA IMPORTANT:: make this NOT crash!!!!!!!! */
+				/* okay good enough */
 				res.statusCode = 404;
 				res.setHeader("Content-Type","text/plain");
 				res.end("idk man");
