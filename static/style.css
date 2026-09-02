@@ -216,3 +216,29 @@ article pre {
 	align-items: center;
 	color: #05556F;
 }
+
+@media all and (max-width: 800px) {
+	header {
+		flex-direction: column;
+	}
+	nav {
+		padding: 8px;
+	}
+	.boxrow{
+		flex-direction: column;
+	}
+	.section2 h1, .section2 p {
+		margin-left: 16px;
+		margin-right: 16px;
+	}
+	.yhteystiedot{
+		flex-direction: column;
+	}
+	form{
+		width: 100%;
+	}
+	.map{
+		height: 200px;
+		width: 100%;
+	}
+}
