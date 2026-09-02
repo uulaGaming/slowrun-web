@@ -1,12 +1,12 @@
 /*
-**  site.js
-**
-** awesome swaggy backend for a
-** stupid fake site
-**
+..  site.js
+..
+.. awesome backend for
+.. this example site
+..
 */
 
-/* import this shit */
+/* import modules */
 import * as http from "node:http";
 import * as fs from "node:fs";
 import * as path from "node:path";
