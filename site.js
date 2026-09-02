@@ -49,6 +49,14 @@ const server = http.createServer((req, res) => {
 			break;
 
 		case "/news":
+			if(urlparams.length > 1){
+				if(urlparams[1].indexOf("..") > -1) {
+					res.statusCode = 302;
+					res.setHeader("Location","/stop.html");
+					res.end();
+					break;
+				}
+			}
 			res.setHeader("Content-Type","text/html");
 			res.write('<link rel="stylesheet" href="style.css">');
 			res.write('<meta charset="utf-8">');
