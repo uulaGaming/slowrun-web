@@ -31,6 +31,9 @@ const MIME_TYPES = {
 	ttf: "font/ttf",
 };
 
+if(!fs.existsSync("messages/")) fs.mkdirSync("messages");
+if(!fs.existsSync("news/")) fs.mkdirSync("news");
+
 /* make the server with with a handler function */
 const server = http.createServer((req, res) => {
 
